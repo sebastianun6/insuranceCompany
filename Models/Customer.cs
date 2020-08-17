@@ -7,8 +7,8 @@ namespace insuranceCompany.Models
 {
     public class Customer
     {
-        int Id { get; set; }
-        string FullName { get; set; }
-        string Identification { get; set; }
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Identification { get; set; }
     }
 }

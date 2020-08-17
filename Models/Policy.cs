@@ -7,14 +7,14 @@ namespace insuranceCompany.Models
 {
     public class Policy
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-        string TypePolicy { get; set; }
-        int Coverage { get; set; }
-        DateTime BeginDate { get; set; }
-        int CoveragePeriod { get; set; }
-        double PolicyCost { get; set; }
-        string TypeRisk { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string TypePolicy { get; set; }
+        public int Coverage { get; set; }
+        public DateTime BeginDate { get; set; }
+        public int CoveragePeriod { get; set; }
+        public double PolicyCost { get; set; }
+        public string TypeRisk { get; set; }
     }
 }

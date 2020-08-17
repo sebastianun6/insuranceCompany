@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using insuranceCompany.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace insuranceCompany.Data
         {
             _Context = context;
             _Logger = loggerFactory.CreateLogger("CustomerRepository");
+        }
+
+        public IEnumerable<Customer> GetCustomers()
+        {
+            return _Context.Customers.ToList<Customer>();
         }
     }
 }
