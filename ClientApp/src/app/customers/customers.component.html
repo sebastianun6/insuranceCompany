@@ -1,1 +1,17 @@
-<p>customers works!</p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Identification</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.fullName }}</td>
+        <td>{{ customer.identification }}</td>
+        <td><a class="nav-link text-dark" [routerLink]="['/xxx', customer.id]"><i class="material-icons">edit</i></a> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
