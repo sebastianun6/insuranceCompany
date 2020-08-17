@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IPolicy } from '../interfaces';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-policies',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciesComponent implements OnInit {
 
-  constructor() { }
+  policies: IPolicy[];
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.getPolicies().subscribe((response: IPolicy[]) => {
+      this.policies = response;
+    },
+    (err: any) => console.log(err));
   }
 
 }

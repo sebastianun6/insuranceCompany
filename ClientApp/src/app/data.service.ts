@@ -59,6 +59,15 @@ deleteCustomer(customer: ICustomer) : Observable<ICustomer> {
   );
 }
 
+getPolicies() : Observable<IPolicy[]> {
+  return this.http.get<IPolicy[]>(this.basePoliciesUrl).pipe(
+    map((policies: IPolicy[]) => {
+        return policies;
+    }),
+    catchError(this.handleError)
+  );
+}
+
   private handleError(error: HttpErrorResponse) {
     console.error('server error:', error); 
     return Observable.throw(error);

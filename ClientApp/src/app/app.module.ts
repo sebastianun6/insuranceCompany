@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CustomersComponent } from './customers/customers.component';
 import { PoliciesComponent } from './policies/policies.component';
 import { CustomersEditComponent } from './customers-edit/customers-edit.component';
+import { PoliciesEditComponent } from './policies-edit/policies-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CustomersEditComponent } from './customers-edit/customers-edit.componen
     FetchDataComponent,
     CustomersComponent,
     PoliciesComponent,
-    CustomersEditComponent
+    CustomersEditComponent,
+    PoliciesEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,6 +38,7 @@ import { CustomersEditComponent } from './customers-edit/customers-edit.componen
       { path: 'customers', component: CustomersComponent },
       { path: 'customers/:id', component: CustomersEditComponent },
       { path: 'policies', component: PoliciesComponent },
+      { path: 'policies/:id', component: PoliciesEditComponent },
     ])
   ],
   providers: [],

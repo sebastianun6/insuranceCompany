@@ -6,12 +6,12 @@ export interface ICustomer {
 
 export interface IPolicy{
     id?: number;
-    Name: string;
-    Description: string;
-    TypePolicy: string;
-    Coverage: number;
-    BeginDate: Date;
-    CoveragePeriod: number;
-    PolicyCost: number;
-    TypeRisk: string;
+    name: string;
+    description: string;
+    typePolicy: string;
+    coverage: number;
+    beginDate: Date;
+    coveragePeriod: number;
+    policyCost: number;
+    typeRisk: string;
 }

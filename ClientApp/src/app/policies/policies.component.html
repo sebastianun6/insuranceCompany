@@ -1,1 +1,43 @@
-<p>policies works!</p>
+<div class="customers view indent">
+        <div class="container">
+            <header>
+                <h3>
+                    Policies
+                </h3>
+            </header>
+            <br />
+            <div class="row">
+                <a class="btn btn-success" [routerLink]="['/policies', '0']">Add New Policy</a>
+            </div>
+            <br />
+            <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="policies">
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Coverage</th>
+                    <th>Begin Date</th>
+                    <th>Coverage Period</th>
+                    <th>Policy Cost</th>
+                    <th>Risk</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let policy of policies">
+                    <td>{{ policy.name }}</td>
+                    <td>{{ policy.description }}</td>
+                    <td>{{ policy.typePolicy }}</td>
+                    <td>{{ policy.coverage }}%</td>
+                    <td>{{ policy.beginDate }}</td>
+                    <td>{{ policy.coveragePeriod }} months</td>
+                    <td>${{ policy.policyCost }}</td>
+                    <td>{{ policy.typeRisk }}</td>
+                    <td><a class="nav-link text-dark" [routerLink]="['/policies', policy.id]"><i class="material-icons">edit</i></a> 
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
