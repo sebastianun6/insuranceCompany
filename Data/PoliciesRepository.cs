@@ -18,9 +18,34 @@ namespace insuranceCompany.Data
             _Logger = loggerFactory.CreateLogger("PoliciesRepository");
         }
 
+        public bool AddPolicy(Policy policy)
+        {
+            _Context.Add(policy);
+            return _Context.SaveChanges() > 0 ? true : false;
+        }
+
+        public bool DeletePolicy(int id)
+        {
+            var policy = _Context.Policies.SingleOrDefault(p => p.Id == id);
+            _Context.Remove(policy);
+            return _Context.SaveChanges() > 0 ? true : false;
+        }
+
         public IEnumerable<Policy> GetPolicies()
         {
             return _Context.Policies.ToList<Policy>();
+        }
+
+        public Policy GetPolicy(int id)
+        {
+            return _Context.Policies.SingleOrDefault(p => p.Id == id);
+        }
+
+        public bool UpdatePolicy(Policy policy)
+        {
+            _Context.Policies.Attach(policy);
+            _Context.Entry(policy).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            return _Context.SaveChanges() > 0 ? true : false;
         }
     }
 }

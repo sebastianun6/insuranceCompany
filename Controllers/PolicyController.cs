@@ -27,5 +27,56 @@ namespace insuranceCompany.Controllers
         {
             return _policiesRepo.GetPolicies();
         }
+
+        [HttpGet("{id}")]
+        public Policy Get(int id)
+        {
+            return _policiesRepo.GetPolicy(id);
+        }
+
+        [HttpPost()]
+        public ActionResult AddPolicy([FromBody] Policy policy)
+        {
+            try
+            {
+                var status = _policiesRepo.AddPolicy(policy);
+                return Ok();
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdatePolicy(int id, [FromBody] Policy policy)
+        {
+            try
+            {
+                var status = _policiesRepo.UpdatePolicy(policy);
+                return Ok();
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeletePolicy(int id)
+        {
+            try
+            {
+                var status = _policiesRepo.DeletePolicy(id);
+                return Ok();
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest();
+            }
+        }
     }
 }

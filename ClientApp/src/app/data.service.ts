@@ -68,6 +68,42 @@ getPolicies() : Observable<IPolicy[]> {
   );
 }
 
+getPolicy(id: number) : Observable<IPolicy> {
+  return this.http.get<IPolicy>(this.basePoliciesUrl + '/' + id).pipe(
+    map((policy: IPolicy) => {
+        return policy;
+    }),
+    catchError(this.handleError)
+  );
+}
+
+addPolicy(policy: IPolicy) : Observable<IPolicy> {
+return this.http.post<IPolicy>(this.basePoliciesUrl, policy).pipe(
+  map((policy: IPolicy) => {
+      return policy;
+  }),
+  catchError(this.handleError)
+);
+}
+
+updatePolicy(policy: IPolicy) : Observable<IPolicy> {
+return this.http.put<IPolicy>(this.basePoliciesUrl + '/' + policy.id, policy).pipe(
+  map((policy: IPolicy) => {
+      return policy;
+  }),
+  catchError(this.handleError)
+);
+}
+
+deletePolicy(policy: IPolicy) : Observable<IPolicy> {
+return this.http.delete<IPolicy>(this.basePoliciesUrl + '/' + policy.id).pipe(
+  map((res) => {
+      return res;
+  }),
+  catchError(this.handleError)
+);
+}
+
   private handleError(error: HttpErrorResponse) {
     console.error('server error:', error); 
     return Observable.throw(error);

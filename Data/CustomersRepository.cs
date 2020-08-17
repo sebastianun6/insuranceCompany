@@ -43,7 +43,7 @@ namespace insuranceCompany.Data
 
         public bool DeleteCustomer(int id)
         {
-            var customer = _Context.Customers.SingleOrDefault(w => w.Id == id);
+            var customer = _Context.Customers.SingleOrDefault(c => c.Id == id);
             _Context.Remove(customer);
             return _Context.SaveChanges() > 0 ? true : false;
         }

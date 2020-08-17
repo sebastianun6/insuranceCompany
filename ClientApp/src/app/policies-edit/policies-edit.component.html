@@ -1,1 +1,77 @@
-<p>policies-edit works!</p>
+<h3>
+        Details
+</h3>
+    
+<form [formGroup]="policyForm" class="editForm" *ngIf="policyForm">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name">
+        <div class="alert alert-danger" [hidden]="policyForm.controls.name.untouched || policyForm.controls.name.valid">Name is required</div>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" formControlName="description" />
+        <div class="alert alert-danger" [hidden]="policyForm.controls.description.untouched || policyForm.controls.description.valid">Description is required</div>
+    </div>
+
+    <div class="form-group">
+        <label>Type</label>
+        <select class="custom-select" formControlName="typePolicy">
+            <option value="">Choose your type of Policy</option>
+            <option *ngFor="let typePolicy of typePolicyOptions" [ngValue]="typePolicy">{{typePolicy}}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="policyForm.controls.typePolicy.untouched || policyForm.controls.typePolicy.valid">Type of Policy is required</div>
+    </div>
+
+    <div class="form-group">
+        <label>Coverage</label>
+        <input type="number" min="0" max="100" class="form-control" formControlName="coverage" />
+        <!-- <div class="alert alert-danger" [hidden]="policyForm.controls.coverage.untouched || policyForm.controls.coverage.valid">Coverage is required</div> -->
+        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors && policyForm.controls.coverage.errors.required">
+                Coverage is required
+        </div>
+        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors && policyForm.controls.coverage.errors.max">
+            100 is the maximun value
+        </div>
+        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors && policyForm.controls.coverage.errors.min">
+            0 is the minimun value
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Begin Date</label>
+        <input type="date" class="form-control" formControlName="beginDate" />
+        <div class="alert alert-danger" [hidden]="policyForm.controls.beginDate.untouched || policyForm.controls.beginDate.valid">Begin Date is required</div>
+    </div>
+    <div class="form-group">
+        <label>Coverage Period</label>
+        <input type="number" class="form-control" formControlName="coveragePeriod" />
+        <div class="alert alert-danger" [hidden]="policyForm.controls.coveragePeriod.untouched || policyForm.controls.coveragePeriod.valid">Coverage Period is required</div>
+    </div>
+    <div class="form-group">
+        <label>Policy Cost</label>
+        <input type="number" class="form-control" formControlName="policyCost" />
+        <div class="alert alert-danger" [hidden]="policyForm.controls.policyCost.untouched || policyForm.controls.policyCost.valid">Policy Cost is required</div>
+    </div>
+
+    <div class="form-group">
+        <label>Type</label>
+        <select class="custom-select" formControlName="typeRisk">
+            <option value="">Choose your type Risk</option>
+            <option *ngFor="let typeRisk of typeRiskOptions" [ngValue]="typeRisk">{{typeRisk}}</option>
+        </select>
+        <div class="alert alert-danger" [hidden]="policyForm.controls.typeRisk.untouched || policyForm.controls.typeRisk.valid">Risk is required</div>
+    </div>
+
+    <br />
+    <div>
+        <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!policyForm.valid" >{{saveOrUpdateText}}</button>
+        <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>
+
+        <div class="alert alert-warning" *ngIf="policy.id != 0 && showDeleteMessage">
+            Delete Policy?&nbsp;&nbsp;<button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;
+            <button class="btn btn-primary" (click)="showDeleteMessage = false">No</button>
+        </div>
+        <button class="btn btn-danger" *ngIf="policy.id != 0 && !showDeleteMessage" (click)="showDeleteMessage = true">Delete</button>&nbsp;&nbsp;
+    </div>
+    <br />
+</form>
