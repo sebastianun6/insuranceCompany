@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
 })
 export class CustomersComponent implements OnInit {
   customers: ICustomer[];
-  constructor(private dataService: DataService,) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.getCustomers().subscribe((response: ICustomer[]) => {

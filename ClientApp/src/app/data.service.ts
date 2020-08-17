@@ -23,6 +23,42 @@ export class DataService {
     );
   }
 
+  getCustomer(id: number) : Observable<ICustomer> {
+    return this.http.get<ICustomer>(this.baseCustomersUrl + '/' + id).pipe(
+      map((customer: ICustomer) => {
+          return customer;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+addCustomer(customer: ICustomer) : Observable<ICustomer> {
+  return this.http.post<ICustomer>(this.baseCustomersUrl, customer).pipe(
+    map((customer: ICustomer) => {
+        return customer;
+    }),
+    catchError(this.handleError)
+  );
+}
+
+updateCustomer(customer: ICustomer) : Observable<ICustomer> {
+  return this.http.put<ICustomer>(this.baseCustomersUrl + '/' + customer.id, customer).pipe(
+    map((customer: ICustomer) => {
+        return customer;
+    }),
+    catchError(this.handleError)
+  );
+}
+
+deleteCustomer(customer: ICustomer) : Observable<ICustomer> {
+  return this.http.delete<ICustomer>(this.baseCustomersUrl + '/' + customer.id).pipe(
+    map((res) => {
+        return res;
+    }),
+    catchError(this.handleError)
+  );
+}
+
   private handleError(error: HttpErrorResponse) {
     console.error('server error:', error); 
     return Observable.throw(error);

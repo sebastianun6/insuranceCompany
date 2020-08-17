@@ -1,0 +1,28 @@
+<h3>
+    Details
+</h3>
+    
+<form [formGroup]="customerForm" class="editForm" *ngIf="customerForm">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" class="form-control" formControlName="fullName">
+        <div class="alert alert-danger" [hidden]="customerForm.controls.fullName.untouched || customerForm.controls.fullName.valid">Full Name is required</div>
+    </div>
+    <div class="form-group">
+        <label>Identification</label>
+        <input type="text" class="form-control" formControlName="identification" />
+        <div class="alert alert-danger" [hidden]="customerForm.controls.identification.untouched || customerForm.controls.identification.valid">Identification is required</div>
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!customerForm.valid" >{{saveOrUpdateText}}</button>
+        <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>
+
+        <div class="alert alert-warning" *ngIf="customer.id != 0 && showDeleteMessage">
+            Delete Customer?&nbsp;&nbsp;<button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;
+            <button class="btn btn-primary" (click)="showDeleteMessage = false">No</button>
+        </div>
+        <button class="btn btn-danger" *ngIf="customer.id != 0 && !showDeleteMessage" (click)="showDeleteMessage = true">Delete</button>&nbsp;&nbsp;
+    </div>
+    <br />
+</form>

@@ -1,17 +1,31 @@
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
-    <thead>
-      <tr>
-        <th>Full Name</th>
-        <th>Identification</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let customer of customers">
-        <td>{{ customer.fullName }}</td>
-        <td>{{ customer.identification }}</td>
-        <td><a class="nav-link text-dark" [routerLink]="['/xxx', customer.id]"><i class="material-icons">edit</i></a> 
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="customers view indent">
+    <div class="container">
+        <header>
+            <h3>
+                Customers
+            </h3>
+        </header>
+        <br />
+        <div class="row">
+            <a class="btn btn-success" [routerLink]="['/customers', '0']">Add New Customer</a>
+        </div>
+        <br />
+        <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
+            <thead>
+                <tr>
+                <th>Full Name</th>
+                <th>Identification</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                <td>{{ customer.fullName }}</td>
+                <td>{{ customer.identification }}</td>
+                <td><a class="nav-link text-dark" [routerLink]="['/customers', customer.id]"><i class="material-icons">edit</i></a> 
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

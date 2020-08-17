@@ -9,5 +9,10 @@ namespace insuranceCompany.Data
     public interface ICustomersRepository
     {
         IEnumerable<Customer> GetCustomers();
+        Customer GetCustomer(int id);
+        bool UpdateCustomer(Customer customer);
+        bool DeleteCustomer(int id);
+        bool AddCustomer(Customer customer);
+
     }
 }
