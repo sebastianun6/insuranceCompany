@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace insuranceCompany.Data
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomersRepository : ICustomersRepository
     {
         private readonly ApplicationDbContext _Context;
         private readonly ILogger _Logger;
 
-        public CustomerRepository(ApplicationDbContext context, ILoggerFactory loggerFactory)
+        public CustomersRepository(ApplicationDbContext context, ILoggerFactory loggerFactory)
         {
             _Context = context;
             _Logger = loggerFactory.CreateLogger("CustomerRepository");

@@ -29,7 +29,7 @@ namespace insuranceCompany
             });
 
             services.AddScoped<IPoliciesRepository, PoliciesRepository>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace insuranceCompany.Data
 {
-    public interface ICustomerRepository
+    public interface ICustomersRepository
     {
     }
 }
