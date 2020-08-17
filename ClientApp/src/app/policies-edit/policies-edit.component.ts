@@ -61,7 +61,7 @@ export class PoliciesEditComponent implements OnInit {
       coveragePeriod: [this.policy.coveragePeriod, Validators.required],
       policyCost: [this.policy.policyCost, Validators.required],
       typeRisk: [this.policy.typeRisk, Validators.required],
-    });
+    }, {validator: this.highRiskValidator});
   }
 
   submit(event: Event){
@@ -90,6 +90,13 @@ export class PoliciesEditComponent implements OnInit {
 
   cancel(event: Event){
     this.router.navigate(['/policies']);
+  }
+
+  highRiskValidator(formGroup: FormGroup){
+    if(formGroup.controls["coverage"].value > 50 &&  formGroup.controls["typeRisk"].value == "High"){
+      return {highRisk: true};
+    }
+    return null;
   }
 
 }

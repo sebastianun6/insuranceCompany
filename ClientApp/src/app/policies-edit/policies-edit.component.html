@@ -27,13 +27,13 @@
         <label>Coverage</label>
         <input type="number" min="0" max="100" class="form-control" formControlName="coverage" />
         <!-- <div class="alert alert-danger" [hidden]="policyForm.controls.coverage.untouched || policyForm.controls.coverage.valid">Coverage is required</div> -->
-        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors && policyForm.controls.coverage.errors.required">
+        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors?.required">
                 Coverage is required
         </div>
-        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors && policyForm.controls.coverage.errors.max">
+        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors?.max">
             100 is the maximun value
         </div>
-        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors && policyForm.controls.coverage.errors.min">
+        <div class="alert alert-danger" *ngIf="policyForm.controls.coverage.errors?.min">
             0 is the minimun value
         </div>
     </div>
@@ -63,6 +63,9 @@
     </div>
 
     <br />
+    <div class="alert alert-danger" *ngIf="policyForm.errors?.highRisk">
+        Cannot have a coverage greater than 50 and High Risk in the policy
+    </div>
     <div>
         <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!policyForm.valid" >{{saveOrUpdateText}}</button>
         <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>
