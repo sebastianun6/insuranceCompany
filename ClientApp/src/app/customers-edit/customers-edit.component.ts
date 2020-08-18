@@ -40,7 +40,7 @@ export class CustomersEditComponent implements OnInit {
       },
       (err: any) => console.log(err));
 
-      this.refreshData();
+      this.refreshData(id);
     }else{
       this.buildForm();
     }
@@ -84,25 +84,25 @@ export class CustomersEditComponent implements OnInit {
 
   assignPolicy(event: Event, policyId: number){
     this.dataService.assignPolicy(this.customer.id, policyId).subscribe((response: ICustomer) => {
-      this.refreshData();
+      this.refreshData(this.customer.id);
     },
     (err: any) => console.log(err));
   }
 
   removePolicy(event: Event, policyId: number){
     this.dataService.removePolicy(this.customer.id, policyId).subscribe((response: ICustomer) => {
-      this.refreshData();
+      this.refreshData(this.customer.id);
     },
     (err: any) => console.log(err));
   }
 
-  refreshData(){
-    this.dataService.getPoliciesToAssignForCustomer(this.customer.id).subscribe((response: IPolicy[]) => {
+  refreshData(id: number){
+    this.dataService.getPoliciesToAssignForCustomer(id).subscribe((response: IPolicy[]) => {
       this.policiesToAssign = response;
     },
     (err: any) => console.log(err));
 
-    this.dataService.getPoliciesAssignedForCustomer(this.customer.id).subscribe((response: IPolicy[]) => {
+    this.dataService.getPoliciesAssignedForCustomer(id).subscribe((response: IPolicy[]) => {
       this.policiesAssigned = response;
     },
     (err: any) => console.log(err));
