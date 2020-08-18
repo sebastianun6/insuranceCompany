@@ -13,6 +13,7 @@ namespace insuranceCompany.Data
         bool UpdateCustomer(Customer customer);
         bool DeleteCustomer(int id);
         bool AddCustomer(Customer customer);
-
+        bool AssignPolicy(int customerId, int policyId);
+        bool RemovePolicy(int customerId, int policyId);
     }
 }

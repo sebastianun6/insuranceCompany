@@ -15,8 +15,8 @@
     </div>
     <br />
     <div>
-        <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!customerForm.valid" >{{saveOrUpdateText}}</button>
-        <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>
+        <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!customerForm.valid" >{{saveOrUpdateText}}</button>&nbsp;&nbsp;
+        <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;
 
         <div class="alert alert-warning" *ngIf="customer.id != 0 && showDeleteMessage">
             Delete Customer?&nbsp;&nbsp;<button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;
@@ -26,3 +26,77 @@
     </div>
     <br />
 </form>
+
+<h3>
+    Policy Assignment
+</h3>
+
+<label><b>Assigned to {{customer.fullName}}</b></label>
+<div class="customers view indent">
+    <div class="container">
+        <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="policiesAssigned">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Coverage</th>
+                <th>Begin Date</th>
+                <th>Coverage Period</th>
+                <th>Policy Cost</th>
+                <th>Risk</th>
+                <th>Remove Policy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let policy of policiesAssigned">
+                <td>{{ policy.name }}</td>
+                <td>{{ policy.description }}</td>
+                <td>{{ policy.typePolicy }}</td>
+                <td>{{ policy.coverage }}%</td>
+                <td>{{ policy.beginDate | date: 'yyyy-MM-dd' }}</td>
+                <td>{{ policy.coveragePeriod }} months</td>
+                <td>${{ policy.policyCost }}</td>
+                <td>{{ policy.typeRisk }}</td>
+                <td><button class="btn" (click)="removePolicy($event, policy.id)"><i class="material-icons">delete</i></button> 
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<label><b>Policies To Assign</b></label>
+<div class="customers view indent">
+    <div class="container">
+        <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="policiesToAssign">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Coverage</th>
+                <th>Begin Date</th>
+                <th>Coverage Period</th>
+                <th>Policy Cost</th>
+                <th>Risk</th>
+                <th>Assign Policy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let policy of policiesToAssign">
+                <td>{{ policy.name }}</td>
+                <td>{{ policy.description }}</td>
+                <td>{{ policy.typePolicy }}</td>
+                <td>{{ policy.coverage }}%</td>
+                <td>{{ policy.beginDate | date: 'yyyy-MM-dd' }}</td>
+                <td>{{ policy.coveragePeriod }} months</td>
+                <td>${{ policy.policyCost }}</td>
+                <td>{{ policy.typeRisk }}</td>
+                <td><button class="btn" (click)="assignPolicy($event, policy.id)"><i class="material-icons">assignment_ind</i></button> 
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

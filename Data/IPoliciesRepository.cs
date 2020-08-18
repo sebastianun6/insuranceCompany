@@ -13,5 +13,7 @@ namespace insuranceCompany.Data
         bool UpdatePolicy(Policy policy);
         bool DeletePolicy(int id);
         bool AddPolicy(Policy policy);
+        IEnumerable<Policy> GetPoliciesToAssignForCustomer(int id);
+        IEnumerable<Policy> GetPoliciesAssignedForCustomer(int id);
     }
 }

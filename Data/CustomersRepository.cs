@@ -47,5 +47,19 @@ namespace insuranceCompany.Data
             _Context.Remove(customer);
             return _Context.SaveChanges() > 0 ? true : false;
         }
+
+        public bool AssignPolicy(int customerId, int policyId)
+        {
+            CustomerPolicies cp = new CustomerPolicies { CustomerId = customerId, PoliciesId = policyId };
+            _Context.CustomerPolicies.Add(cp);
+            return _Context.SaveChanges() > 0 ? true : false;
+        }
+
+        public bool RemovePolicy(int customerId, int policyId)
+        {
+            var cp = _Context.CustomerPolicies.SingleOrDefault(cp => cp.CustomerId == customerId && cp.PoliciesId == policyId);
+            _Context.CustomerPolicies.Remove(cp);
+            return _Context.SaveChanges() > 0 ? true : false;
+        }
     }
 }

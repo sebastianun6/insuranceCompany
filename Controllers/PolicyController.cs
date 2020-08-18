@@ -34,6 +34,20 @@ namespace insuranceCompany.Controllers
             return _policiesRepo.GetPolicy(id);
         }
 
+        [HttpGet("{id}")]
+        [Route("policiesToAssignForCustomer/{id}")]
+        public IEnumerable<Policy> GetPoliciesToAssignForCustomer(int id)
+        {
+            return _policiesRepo.GetPoliciesToAssignForCustomer(id);
+        }
+
+        [HttpGet("{id}")]
+        [Route("policiesAssignedForCustomer/{id}")]
+        public IEnumerable<Policy> GetPoliciesAssignedForCustomer(int id)
+        {
+            return _policiesRepo.GetPoliciesAssignedForCustomer(id);
+        }
+
         [HttpPost()]
         public ActionResult AddPolicy([FromBody] Policy policy)
         {

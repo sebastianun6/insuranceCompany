@@ -36,6 +36,23 @@ namespace insuranceCompany.Data
             return _Context.Policies.ToList<Policy>();
         }
 
+        public IEnumerable<Policy> GetPoliciesAssignedForCustomer(int id)
+        {
+            var query = from cp in _Context.CustomerPolicies
+                        join p in _Context.Policies on cp.PoliciesId equals p.Id
+                        where cp.CustomerId == id 
+                        select p;
+            return query.ToList();
+        }
+
+        public IEnumerable<Policy> GetPoliciesToAssignForCustomer(int id)
+        {
+            var policies = _Context.Policies.ToList<Policy>();
+            var policiesAssigned = GetPoliciesAssignedForCustomer(id);
+
+            return policies.Where(i => !policiesAssigned.Contains(i)).ToList();
+        }
+
         public Policy GetPolicy(int id)
         {
             return _Context.Policies.SingleOrDefault(p => p.Id == id);

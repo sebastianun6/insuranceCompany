@@ -12,6 +12,8 @@ namespace insuranceCompany.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Policy> Policies { get; set; }
 
+        public DbSet<CustomerPolicies> CustomerPolicies { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
     }
 }

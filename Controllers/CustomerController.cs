@@ -78,5 +78,37 @@ namespace insuranceCompany.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        [Route("assignPolicy/{customerId}/{policyId}")]
+        public ActionResult AssignPolicy(int customerId, int policyId)
+        {
+            try
+            {
+                var status = _customersRepo.AssignPolicy(customerId, policyId);
+                return Ok();
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("removePolicy/{customerId}/{policyId}")]
+        public ActionResult RemovePolicy(int customerId, int policyId)
+        {
+            try
+            {
+                var status = _customersRepo.RemovePolicy(customerId, policyId);
+                return Ok();
+            }
+            catch (Exception exp)
+            {
+                _logger.LogError(exp.Message);
+                return BadRequest();
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ICustomer } from '../interfaces';
+import { ICustomer, IPolicy } from '../interfaces';
 import { DataService } from '../data.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { DataService } from '../data.service';
 })
 export class CustomersEditComponent implements OnInit {
 
-
+  
   customerForm: FormGroup;
   customer: ICustomer = {
     id: 0,
@@ -20,6 +20,10 @@ export class CustomersEditComponent implements OnInit {
   }
   saveOrUpdateText = 'Save';
   showDeleteMessage: boolean;
+
+  policiesToAssign: IPolicy[];
+  policiesAssigned: IPolicy[];
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,private route: ActivatedRoute, 
@@ -35,6 +39,8 @@ export class CustomersEditComponent implements OnInit {
         this.buildForm();
       },
       (err: any) => console.log(err));
+
+      this.refreshData();
     }else{
       this.buildForm();
     }
@@ -74,6 +80,32 @@ export class CustomersEditComponent implements OnInit {
 
   cancel(event: Event){
     this.router.navigate(['/customers']);
+  }
+
+  assignPolicy(event: Event, policyId: number){
+    this.dataService.assignPolicy(this.customer.id, policyId).subscribe((response: ICustomer) => {
+      this.refreshData();
+    },
+    (err: any) => console.log(err));
+  }
+
+  removePolicy(event: Event, policyId: number){
+    this.dataService.removePolicy(this.customer.id, policyId).subscribe((response: ICustomer) => {
+      this.refreshData();
+    },
+    (err: any) => console.log(err));
+  }
+
+  refreshData(){
+    this.dataService.getPoliciesToAssignForCustomer(this.customer.id).subscribe((response: IPolicy[]) => {
+      this.policiesToAssign = response;
+    },
+    (err: any) => console.log(err));
+
+    this.dataService.getPoliciesAssignedForCustomer(this.customer.id).subscribe((response: IPolicy[]) => {
+      this.policiesAssigned = response;
+    },
+    (err: any) => console.log(err));
   }
 
 }

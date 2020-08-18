@@ -67,8 +67,8 @@
         Cannot have a coverage greater than 50 and High Risk in the policy
     </div>
     <div>
-        <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!policyForm.valid" >{{saveOrUpdateText}}</button>
-        <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>
+        <button class="btn btn-success" *ngIf="!showDeleteMessage" (click)="submit($event)" [disabled]="!policyForm.valid" >{{saveOrUpdateText}}</button>&nbsp;&nbsp;
+        <button class="btn btn-primary" *ngIf="!showDeleteMessage" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;
 
         <div class="alert alert-warning" *ngIf="policy.id != 0 && showDeleteMessage">
             Delete Policy?&nbsp;&nbsp;<button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;

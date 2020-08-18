@@ -59,6 +59,24 @@ deleteCustomer(customer: ICustomer) : Observable<ICustomer> {
   );
 }
 
+getPoliciesToAssignForCustomer(id: number) : Observable<IPolicy[]> {
+  return this.http.get<IPolicy[]>(this.basePoliciesUrl + '/policiesToAssignForCustomer/' + id).pipe(
+    map((policies: IPolicy[]) => {
+        return policies;
+    }),
+    catchError(this.handleError)
+  );
+}
+
+getPoliciesAssignedForCustomer(id: number) : Observable<IPolicy[]> {
+  return this.http.get<IPolicy[]>(this.basePoliciesUrl + '/policiesAssignedForCustomer/' + id).pipe(
+    map((policies: IPolicy[]) => {
+        return policies;
+    }),
+    catchError(this.handleError)
+  );
+}
+
 getPolicies() : Observable<IPolicy[]> {
   return this.http.get<IPolicy[]>(this.basePoliciesUrl).pipe(
     map((policies: IPolicy[]) => {
@@ -78,30 +96,48 @@ getPolicy(id: number) : Observable<IPolicy> {
 }
 
 addPolicy(policy: IPolicy) : Observable<IPolicy> {
-return this.http.post<IPolicy>(this.basePoliciesUrl, policy).pipe(
-  map((policy: IPolicy) => {
-      return policy;
-  }),
-  catchError(this.handleError)
-);
+  return this.http.post<IPolicy>(this.basePoliciesUrl, policy).pipe(
+    map((policy: IPolicy) => {
+        return policy;
+    }),
+    catchError(this.handleError)
+  );
 }
 
 updatePolicy(policy: IPolicy) : Observable<IPolicy> {
-return this.http.put<IPolicy>(this.basePoliciesUrl + '/' + policy.id, policy).pipe(
-  map((policy: IPolicy) => {
-      return policy;
-  }),
-  catchError(this.handleError)
-);
+  return this.http.put<IPolicy>(this.basePoliciesUrl + '/' + policy.id, policy).pipe(
+    map((policy: IPolicy) => {
+        return policy;
+    }),
+    catchError(this.handleError)
+  );
 }
 
 deletePolicy(policy: IPolicy) : Observable<IPolicy> {
-return this.http.delete<IPolicy>(this.basePoliciesUrl + '/' + policy.id).pipe(
-  map((res) => {
-      return res;
-  }),
-  catchError(this.handleError)
-);
+  return this.http.delete<IPolicy>(this.basePoliciesUrl + '/' + policy.id).pipe(
+    map((res) => {
+        return res;
+    }),
+    catchError(this.handleError)
+  );
+}
+
+assignPolicy(customerId: number, policyId: number) : Observable<ICustomer> {
+  return this.http.post<ICustomer>(this.baseCustomersUrl + '/assignPolicy/' + customerId + '/' + policyId, null).pipe(
+    map((res) => {
+        return res;
+    }),
+    catchError(this.handleError)
+  );
+}
+
+removePolicy(customerId: number, policyId: number) : Observable<ICustomer> {
+  return this.http.post<ICustomer>(this.baseCustomersUrl + '/removePolicy/' + customerId + '/' + policyId, null).pipe(
+    map((res) => {
+        return res;
+    }),
+    catchError(this.handleError)
+  );
 }
 
   private handleError(error: HttpErrorResponse) {
